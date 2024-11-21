@@ -50,3 +50,52 @@ marker.printText("Aloooo");
 
 let fillupmarker = new FillUpMarker("yellow", 5);
 fillupmarker.fillup();
+
+/*Задание 2
+Реализуйте класс ExtendedDate, унаследовав его от стандартного класса Date и добавив следующие возможности:
+■ метод для вывода даты (числа и месяца) текстом;
+■ метод для проверки – это прошедшая дата или будущая
+(если прошедшая, то метод возвращает false; если будущая или текущая, то true);
+■ метод для проверки – високосный год или нет;
+■ метод, возвращающий следующую дату.
+Создайте объект класса ExtendedDate и выведите на экран
+результаты работы новых методов.*/
+
+class ExtendedDate extends Date {
+  getDateMonth() {
+    let months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    return `${this.getDate()} ${months[this.getMonth()]}`;
+  }
+  futureOrPast() {
+    return this >= new Date();
+  }
+  leapYear() {
+    let year = this.getFullYear();
+    return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+  }
+
+  getNextDate() {
+    let nextDate = this.getDate() + 1;
+    return nextDate;
+  }
+}
+
+let date = new ExtendedDate(2024, 10, 21);
+
+console.log(date.getDateMonth());
+console.log(date.futureOrPast());
+console.log(date.leapYear());
+console.log(date.getNextDate().toLocaleDateString());
